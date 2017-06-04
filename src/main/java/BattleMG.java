@@ -57,7 +57,7 @@ public class BattleMG {
             battlesThreads = Integer.parseInt(args[1]);
             pageCount = Integer.parseInt(args[2]);
         } else {
-            log.error("Set to Deafult");
+            log.error("Set parameters to default");
         }
         log.error("battles threads count = " + battlesThreads);
         log.error("players threads count = " + playersThreads);
