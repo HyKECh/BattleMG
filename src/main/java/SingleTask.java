@@ -177,11 +177,7 @@ public class SingleTask implements Runnable {
             }
             init();
             internal.lock();
-            // parceData();
-        } finally {
-
         }
-
 
         if (!rawTeamA.isEmpty()) {
             if (teamA.length > 0) {
@@ -226,7 +222,6 @@ public class SingleTask implements Runnable {
         message.append((tStop - tStart) / 1000.0f);
         log.error(message.toString());
 
-        //  driver.close();
 
         wasRun[currNumber]++;
         if (wasRun[currNumber] >= 100) {
@@ -266,35 +261,9 @@ public class SingleTask implements Runnable {
 
     private void init() {
         driver = new PhantomJSDriver(caps);
-//        System.out.println("reinit");
-       /* DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-
-        HashMap<String, Object> images = new HashMap<String, Object>();
-        images.put("images", 2);
-        HashMap<String, Object> prefs = new HashMap<String, Object>();
-        prefs.put("profile.default_content_setting_values", images);
-
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--test-type --no-sandbox");
-        options.addArguments("--enable-strict-powerful-feature-restrictions");
-        options.setExperimentalOption("prefs", prefs);
-
-        options.addArguments("--proxy-server=http://127.0.0.1:8800");
-        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-
-        driver = new ChromeDriver(capabilities);*/
-        //   driver = new ChromeDriver();
-
-        //driver = new HtmlUnitDriver();
-        //driver = new FirefoxDriver();
-//        driver = new HtmlUnitDriver();
-//        driver.setJavascriptEnabled(true);
-        //       driver.navigate().to(BASE_URL);
-//        driver.get(BASE_URL);
         driver.navigate().to(BASE_URL);
         driver.findElement(By.id("email")).sendKeys(email);
         driver.findElement(By.id("password")).sendKeys(pass);
         driver.findElement(By.xpath("//input[@value='Authorization']")).submit();
-        // driver.navigate().to(BASE_URL);
     }
 }

@@ -33,7 +33,6 @@ public class TaskScheduler implements Runnable {
         TaskScheduler.number = number;
         init();
         return taskScheduler;
-
     }
 
     public void run() {

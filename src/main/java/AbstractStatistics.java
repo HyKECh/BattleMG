@@ -12,36 +12,6 @@ abstract class AbstractStatistics implements Serializable {
     private int id;
     @Column(columnDefinition = "VARCHAR(25)", unique = true, nullable = false)
     private String login;
-    /* @Column(name = "average_active_kills_by_spawn", columnDefinition = "FLOAT")
-     private float averageActiveKillsBySpawn;*/
-   /* @Column(name = "average_active_kills_by_spawn_place", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int averageActiveKillsBySpawnPlace = -2;*/
-    /*@Column(name = "average_score", columnDefinition = "FLOAT")
-    private float averageScore;
-    @Column(name = "average_score_place", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int averageScorePlace = -2;*/
-    /*@Column(name = "average_script_kills_by_spawn", columnDefinition = "FLOAT")
-    private float averageScriptKillsBySpawn;
-    @Column(name = "average_script_kills_by_spawn_place", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int averageScriptKillsBySpawnPlace = -2;
-    @Column(name = "average_relative_position", columnDefinition = "FLOAT")
-    private float average_position;
-    @Column(name = "average_relative_position_place", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int average_position_place = -2;*/
-   /* @Column(name = "battles_place", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int battles_place = -2;*/
-    /*@Column(name = "battles_value", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int battles_value;*/
-    /*   @Column(name = "combat_mode", dataType = DataType.ENUM_INTEGER)
-       private BattleListCombatType combat_mode;*/
-    /*@Column(name = "custom_finished", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int custom_finished;
-    @Column(name = "custom_time_played", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int custom_time_played;
-    @Column(name = "custom_victories", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int custom_victories = 0;
-    @Column(name = "deaths_place", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int deaths_place = -2;*/
 
 
     @Column(name = "deaths_value", columnDefinition = "MEDIUMINT UNSIGNED", nullable = false)
@@ -64,36 +34,12 @@ abstract class AbstractStatistics implements Serializable {
     private float ground_frag_by_session;
 
 
-    /* @Column(name = "effectiveness", columnDefinition = "FLOAT")
-     private float effectiveness;
-     @Column(name = "experience_place", columnDefinition = "MEDIUMINT UNSIGNED")
-     private int experience_place = -2;
-     @Column(name = "experience_value", columnDefinition = "INT")
-     private long experience_value;
-     @Column(name = "full_deaths", columnDefinition = "MEDIUMINT UNSIGNED")
-     private int full_deaths;
-     @Column(name = "full_target_air", columnDefinition = "MEDIUMINT UNSIGNED")
-     private int full_target_air;*/
-    /*@Column(name = "lions_place", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int lions_place = -2;
-    @Column(name = "lions_value", columnDefinition = "INT")
-    private long lions_value;*/
     @Column(name = "mission_finished", columnDefinition = "MEDIUMINT UNSIGNED", nullable = false)
     private int mission_finished;
-    /*@Column(name = "mission_time_played", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int mission_time_played;*/
+
     @Column(name = "mission_victories", columnDefinition = "MEDIUMINT UNSIGNED", nullable = false)
     private int mission_victories;
-    /* @Column(name = "pvp_rating_place", columnDefinition = "MEDIUMINT UNSIGNED")
-         private int pvp_rating_place = -2;
-         @Column(name = "pvp_rating_value", columnDefinition = "MEDIUMINT UNSIGNED")
-         private int pvp_rating_value;
-         @Column(name = "pvp_time_place", columnDefinition = "MEDIUMINT UNSIGNED")
-         private int pvp_time_place = -2;
-         @Column(name = "pvp_time_value", columnDefinition = "MEDIUMINT UNSIGNED")
-         private int pvp_time_value;*/
-  /*  @Column(name = "random_finished", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int random_finished;*/
+
     @Column(name = "random_session", columnDefinition = "MEDIUMINT UNSIGNED", nullable = false)
     private int random_session;
     @Column(name = "random_time_SPAA", columnDefinition = "MEDIUMINT UNSIGNED", nullable = false)
@@ -112,18 +58,10 @@ abstract class AbstractStatistics implements Serializable {
     private int random_time_tank_heavy;
     @Column(name = "random_victories", columnDefinition = "MEDIUMINT UNSIGNED", nullable = false)
     private int random_victories;
-    /*@Column(name = "respawnes_place", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int respawnes_place = -2;
-    @Column(name = "respawnes_value", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int respawnes_value;
-    @Column(name = "stars", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int stars;*//*
-    @Column(name = "target_air_place", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int target_air_place = -2;*/
+
     @Column(name = "target_air_value", columnDefinition = "MEDIUMINT UNSIGNED", nullable = false)
     private int target_air_value;
-    /*@Column(name = "target_ground_place", columnDefinition = "MEDIUMINT UNSIGNED")
-        private int target_ground_place = -2;*/
+
     @Column(name = "target_ground_value", columnDefinition = "MEDIUMINT UNSIGNED", nullable = false)
     private int target_ground_value;
 
@@ -255,47 +193,7 @@ abstract class AbstractStatistics implements Serializable {
     public void setTarget_ground_value(int target_ground_value) {
         this.target_ground_value = target_ground_value;
     }
-    /*
-    @Column(name = "total_average_active_kills_by_spawn", columnDefinition = "FLOAT")
-    private float totalAverageActiveKillsBySpawn;*/
-    /*@Column(name = "total_average_active_kills_by_spawn_place", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int totalAverageActiveKillsBySpawnPlace = -2;
-    @Column(name = "total_average_score", columnDefinition = "FLOAT")
-    private float totalAverageScore;
-    @Column(name = "total_average_score_place", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int totalAverageScorePlace = -2;
-    @Column(name = "total_average_script_kills_by_spawn", columnDefinition = "FLOAT")
-    private float totalAverageScriptKillsBySpawn;
-    @Column(name = "total_average_script_kills_by_spawn_place", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int totalAverageScriptKillsBySpawnPlace = -2;
-    @Column(name = "total_average_relative_position", columnDefinition = "FLOAT")
-    private float total_average_position;
-    @Column(name = "total_average_relative_position_place", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int total_average_position_place = -2;
-    @Column(name = "total_pvp_rating_place", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int total_pvp_rating_place = -2;
-    @Column(name = "total_pvp_rating_value", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int total_pvp_rating_value;
-    @Column(name = "total_target_air_place", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int total_target_air_place = -2;
-    @Column(name = "total_target_air_value", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int total_target_air_value;
-    @Column(name = "total_target_ground_place", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int total_target_ground_place = -2;
-    @Column(name = "total_target_ground_value", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int total_target_ground_value;
-    @Column(name = "total_victory_battles_place", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int total_victory_battles_place = -2;
-    @Column(name = "total_victory_battles_value", columnDefinition = "FLOAT")
-    private float total_victory_battles_value;
-   *//* @Column(name = "victory_battles_place", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int victory_battles_place = -2;*//*
-    @Column(name = "victory_battles_value", columnDefinition = "FLOAT")
-    private float victory_battles_value;
-   *//* @Column(name = "victory_place", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int victory_place = -2;*//*
-    @Column(name = "victory_value", columnDefinition = "MEDIUMINT UNSIGNED")
-    private int victory_value;*/
+
 
     @Override
     public int hashCode() {
