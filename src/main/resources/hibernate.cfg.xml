@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mariadb://localhost:3306/BattlesMG?autoReconnect=true&amp;useSSL=false&amp;createDatabaseIfNotExist=true</property>
+        <property name="connection.driver_class">org.mariadb.jdbc.Driver</property>
+        <property name="dialect">org.hibernate.dialect.MySQL57InnoDBDialect</property>
+
+        <property name="hbm2ddl.auto">update</property>
+        <!--<property name="show_sql">true</property>-->
+
+        <property name="hibernate.c3p0.min_size">100</property>
+        <property name="hibernate.c3p0.max_size">150</property>
+        <property name="hibernate.c3p0.timeout">5</property>
+        <property name="hibernate.c3p0.max_statements">4096</property>
+        <property name="hibernate.c3p0.idle_test_periods">5</property>
+
+        <mapping class="Battle"/>
+        <mapping class="PlayersInBattle"/>
+        <mapping class="Player"/>
+        <mapping class="RealBattleStatistics"/>
+        <mapping class="ArcadaBattleStatistics"/>
+        <mapping class="SimulatorBattleStatistics"/>
+
+    </session-factory>
+</hibernate-configuration>

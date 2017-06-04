@@ -1,0 +1,9 @@
+email = e@ma.il
+pass = password
+identity_sid = 1
+identity_token = a1
+identity_id = 2
+identity_name = name
+proxy_ip = 127.0.0.1
+proxy_port = 8800
+base_url = http://base.url
