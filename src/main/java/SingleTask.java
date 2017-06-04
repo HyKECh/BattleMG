@@ -3,7 +3,6 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -31,8 +30,6 @@ public class SingleTask implements Runnable {
 
     static {
         ArrayList<String> cliArgsCap = new ArrayList<>();
-
-
         Properties prop = GetProperties.get();
         String proxy_ip = prop.getProperty("proxy_ip");
         String proxy_port = prop.getProperty("proxy_port");
@@ -42,13 +39,6 @@ public class SingleTask implements Runnable {
         caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, cliArgsCap);
         caps.setCapability(PhantomJSDriverService.PHANTOMJS_PAGE_SETTINGS_PREFIX + "loadImages", false);
         System.setProperty("phantomjs.binary.path", "phantomjs.exe");
-        System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
-        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-
-        capabilities = DesiredCapabilities.chrome();
-        Proxy proxy = new Proxy();
-        proxy.setHttpProxy(proxy_ip + ":" + proxy_port);
-        capabilities.setCapability("proxy", proxy);
 
 
         email = prop.getProperty("email");
@@ -261,6 +251,7 @@ public class SingleTask implements Runnable {
 
     private void init() {
         driver = new PhantomJSDriver(caps);
+        log.error("URL " + BASE_URL);
         driver.navigate().to(BASE_URL);
         driver.findElement(By.id("email")).sendKeys(email);
         driver.findElement(By.id("password")).sendKeys(pass);
