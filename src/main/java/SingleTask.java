@@ -251,7 +251,6 @@ public class SingleTask implements Runnable {
 
     private void init() {
         driver = new PhantomJSDriver(caps);
-        log.error("URL " + BASE_URL);
         driver.navigate().to(BASE_URL);
         driver.findElement(By.id("email")).sendKeys(email);
         driver.findElement(By.id("password")).sendKeys(pass);
