@@ -21,7 +21,7 @@
         <mapping class="PlayersInBattle"/>
         <mapping class="Player"/>
         <mapping class="RealBattleStatistics"/>
-        <mapping class="ArcadaBattleStatistics"/>
+        <mapping class="ArcadeBattleStatistics"/>
         <mapping class="SimulatorBattleStatistics"/>
 
     </session-factory>

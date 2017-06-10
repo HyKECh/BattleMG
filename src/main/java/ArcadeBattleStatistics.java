@@ -3,5 +3,5 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "arcade")
-public class ArcadaBattleStatistics extends AbstractStatistics {
+public class ArcadeBattleStatistics extends AbstractStatistics {
 }

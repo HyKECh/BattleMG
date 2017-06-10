@@ -1,26 +1,20 @@
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class TaskScheduler implements Runnable {
-    static boolean shedulerStop;
-    static SingleTask[] tasks;
-    static int number;
-    static AtomicBoolean anyReady = new AtomicBoolean(true);
-    static BlockingQueue<Battle> queue;
-    static ReentrantLock dbLock;
-    static ReentrantLock taskLock = new ReentrantLock();
-    static Condition condition = taskLock.newCondition();
-    static boolean isReady;
-    static AtomicInteger activeTasks = new AtomicInteger();
-    static AtomicInteger queuSize = new AtomicInteger();
-    static AtomicInteger tasksInQueue = new AtomicInteger();
-    static boolean stop;
-    static ReentrantLock isReadyLock = new ReentrantLock();
-    static Condition isReadyCondition = isReadyLock.newCondition();
+    private static SingleTask[] tasks;
+    private static int number;
+    private static BlockingQueue<Battle> queue;
+    private static ReentrantLock dbLock;
+    private static ReentrantLock taskLock = new ReentrantLock();
+    private static Condition condition = taskLock.newCondition();
+    private static boolean isReady;
+    private static AtomicInteger tasksInQueue = new AtomicInteger();
+    private static ReentrantLock isReadyLock = new ReentrantLock();
+    private static Condition isReadyCondition = isReadyLock.newCondition();
 
     private TaskScheduler() {
     }
@@ -45,7 +39,7 @@ public class TaskScheduler implements Runnable {
             }
         }
         isReadyLock.unlock();
-        while ((!stop) || (tasksInQueue.get() > 0)) {
+        while (tasksInQueue.get() > 0) {
             while (tasksInQueue.get() == 0) {
                 isReadyLock.lock();
                 try {
@@ -67,8 +61,6 @@ public class TaskScheduler implements Runnable {
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
-                    } finally {
-
                     }
                 }
                 taskLock.unlock();
@@ -83,33 +75,10 @@ public class TaskScheduler implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
         tasksInQueue.incrementAndGet();
         isReadyLock.lock();
         isReadyCondition.signal();
         isReadyLock.unlock();
-    }
-
-    void stop() {
-        long startt = System.currentTimeMillis();
-        while (tasksInQueue.get() > 0) {
-            taskLock.lock();
-            try {
-                condition.await();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } finally {
-                taskLock.unlock();
-            }
-
-        }
-        long stopt = System.currentTimeMillis();
-        System.out.println((stopt - startt) / 1000.0f);
-        for (int i = 0; i < number; i++) {
-            tasks[i].stop();
-        }
-        stop = true;
     }
 
     private static void init() {

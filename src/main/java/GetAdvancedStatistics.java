@@ -16,7 +16,7 @@ class GetAdvancedStatistics implements Runnable {
     private static final Logger log = LogManager.getLogger(GetAdvancedStatistics.class);
     private final String login;
     private final Document document;
-    private ArcadaBattleStatistics arcade;
+    private ArcadeBattleStatistics arcade;
     private RealBattleStatistics rb;
     private SimulatorBattleStatistics sb;
 
@@ -40,9 +40,9 @@ class GetAdvancedStatistics implements Runnable {
         query.setParameter("login", login);
         list = query.getResultList();
         if (!list.isEmpty()) {
-            arcade = (ArcadaBattleStatistics) list.get(0);
+            arcade = (ArcadeBattleStatistics) list.get(0);
         } else {
-            arcade = new ArcadaBattleStatistics();
+            arcade = new ArcadeBattleStatistics();
             arcade.setLogin(login);
         }
 
