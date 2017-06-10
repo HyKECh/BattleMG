@@ -35,7 +35,6 @@ class GetStatistics implements Runnable {
         session.saveOrUpdate(player);
         t.commit();
         session.close();
-        //  log.error("basic " + login);
     }
 
     void pase() {

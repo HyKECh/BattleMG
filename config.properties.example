@@ -7,3 +7,4 @@ identity_name = name
 proxy_ip = 127.0.0.1
 proxy_port = 8800
 base_url = http://base.url
+player_stat_url = http://player_st.at

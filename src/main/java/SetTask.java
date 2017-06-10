@@ -3,9 +3,11 @@ import org.apache.logging.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+import java.util.Properties;
+
 class SetTask implements Runnable {
     private static final Logger log = LogManager.getLogger(SetTask.class);
-    private final static String BASE_URL = "http://warthunder.ru/ru/community/userinfo/?nick=";
+    private static String BASE_URL;
     private Document document;
     private Player player;
 
@@ -13,6 +15,10 @@ class SetTask implements Runnable {
         this.player = player;
     }
 
+    static {
+        Properties properties = GetProperties.get();
+        BASE_URL = properties.getProperty("player_stat_url");
+    }
 
     void prepare() {
         try {
