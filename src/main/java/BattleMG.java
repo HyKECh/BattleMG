@@ -55,6 +55,7 @@ public class BattleMG {
         if (args.length == 1) {
             log.error("Get data for players");
             GetAllPlayersStatistics.main(args);
+            return;
         }
         if (args.length == 3) {
             playersThreads = Integer.parseInt(args[0]);
