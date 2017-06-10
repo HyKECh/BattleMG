@@ -23,7 +23,6 @@ class GetStatistics implements Runnable {
         this.document = document;
         this.player = player;
         this.login = this.player.getLogin();
-        //log.error("GetStatistics start " + login);
     }
 
 
