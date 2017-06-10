@@ -2,7 +2,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.apache.logging.log4j.*;
 import org.jsoup.select.Elements;
 
 import javax.persistence.Query;
@@ -35,7 +34,7 @@ class GetAdvancedStatistics implements Runnable {
         session = HibernateFactory.getSession();
         Query query;
         List list;
-        query = session.createQuery("from ArcadaBattleStatistics where login = :login");
+        query = session.createQuery("from ArcadeBattleStatistics where login = :login");
         query.setParameter("login", login);
         list = query.getResultList();
         if (!list.isEmpty()) {
