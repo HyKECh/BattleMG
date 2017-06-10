@@ -29,6 +29,20 @@ public class TaskScheduler implements Runnable {
         return taskScheduler;
     }
 
+    private static void init() {
+        tasks = new SingleTask[number];
+        queue = new ArrayBlockingQueue<>(number + 2);
+        for (int i = 0; i < number; i++) {
+            tasks[i] = new SingleTask(dbLock, i);
+        }
+        SingleTask.setRun(number);
+        isReadyLock.lock();
+        isReady = true;
+        System.out.println("=======================");
+        isReadyCondition.signal();
+        isReadyLock.unlock();
+    }
+
     public void run() {
         isReadyLock.lock();
         while (!isReady) {
@@ -39,7 +53,7 @@ public class TaskScheduler implements Runnable {
             }
         }
         isReadyLock.unlock();
-        while (tasksInQueue.get() > 0) {
+        while (true || (tasksInQueue.get() > 0)) {
             while (tasksInQueue.get() == 0) {
                 isReadyLock.lock();
                 try {
@@ -68,7 +82,6 @@ public class TaskScheduler implements Runnable {
         }
     }
 
-
     void addTask(Battle battle) {
         try {
             queue.put(battle);
@@ -77,20 +90,6 @@ public class TaskScheduler implements Runnable {
         }
         tasksInQueue.incrementAndGet();
         isReadyLock.lock();
-        isReadyCondition.signal();
-        isReadyLock.unlock();
-    }
-
-    private static void init() {
-        tasks = new SingleTask[number];
-        queue = new ArrayBlockingQueue<>(number + 2);
-        for (int i = 0; i < number; i++) {
-            tasks[i] = new SingleTask(dbLock, i);
-        }
-        SingleTask.setRun(number);
-        isReadyLock.lock();
-        isReady = true;
-        System.out.println("=======================");
         isReadyCondition.signal();
         isReadyLock.unlock();
     }
