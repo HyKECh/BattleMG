@@ -20,7 +20,6 @@ public class GetBattles implements Runnable {
     private static String BASE_URL;
     private Map<String, String> cookies = new HashMap<>();
     private int pageNumber;
-    private MyQueue myQueue;
     private ReentrantLock reentrantLock;
     TaskScheduler taskScheduler;
     static private String identity_sid;

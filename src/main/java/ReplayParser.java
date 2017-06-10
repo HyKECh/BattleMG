@@ -18,10 +18,9 @@ public class ReplayParser implements Runnable {
     private Element element;
     private Battle battle;
     private boolean isExist;
-    private MyQueue myQueue;
     private ReentrantLock reentrantLock;
-    TaskScheduler taskScheduler;
-    int pageNumber;
+    private TaskScheduler taskScheduler;
+    private int pageNumber;
 
     ReplayParser(int pageNumber, Element element, TaskScheduler taskScheduler, ReentrantLock reentrantLock) {
         this.pageNumber = pageNumber;
@@ -184,9 +183,7 @@ public class ReplayParser implements Runnable {
                 log.error("SET DURATION  = NULL");
                 e.printStackTrace();
             }
-
             taskScheduler.addTask(battle);
-
         }
     }
 }
