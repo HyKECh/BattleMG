@@ -29,13 +29,5 @@ class SetTask implements Runnable {
         Thread advanced = new Thread(new GetAdvancedStatistics(player.getLogin(), document));
         basic.start();
         advanced.start();
-       /* try {
-            basic.join();
-        } catch (InterruptedException e) {
-        }
-        try {
-            advanced.join();
-        } catch (InterruptedException e) {
-        }*/
     }
 }

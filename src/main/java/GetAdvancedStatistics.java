@@ -176,7 +176,6 @@ class GetAdvancedStatistics implements Runnable {
         session.saveOrUpdate(sb);
         t.commit();
         session.close();
-        //  log.error("advanced " + login);
     }
 
     @Override
