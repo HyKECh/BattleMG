@@ -26,9 +26,6 @@ public class GetBattles implements Runnable {
     static private String identity_token;
     static private String identity_id;
     static private String identity_name;
-    private ReentrantLock restart;
-    private Condition restartCondition;
-    private boolean readyToRestart;
     private AtomicInteger ai;
 
     static {
@@ -45,9 +42,6 @@ public class GetBattles implements Runnable {
         this.taskScheduler = taskScheduler;
         this.pageNumber = pageNumber;
         this.reentrantLock = reentrantLock;
-        this.restart = restart;
-        this.restartCondition = restartCondition;
-        this.readyToRestart = readyToRestart;
     }
 
     private void setCookies() {

@@ -1,1 +1,1 @@
-java -jar BattleMG-1.1-SNAPSHOT.jar 2 2 70
+java -jar BattleMG-1.1-SNAPSHOT.jar 2 2 150

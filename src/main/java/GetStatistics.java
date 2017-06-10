@@ -15,7 +15,6 @@ import java.util.Date;
 class GetStatistics implements Runnable {
     private final static Logger log = LogManager.getLogger(GetStatistics.class);
     private final String login;
-    private AbstractStatistics stata;
     private Player player;
     private Document document;
 
@@ -88,13 +87,9 @@ class GetStatistics implements Runnable {
 
         System.out.println(player.getLogin());
         air = document.select("span[class=js-air_force]").first();
-        //   System.out.println(air.html());
         airArcadePerf = air.select("span[class=battle-score arc_combat]").text();
-        //   System.out.println("-" + airArcadePerf + "-");
         airRbPerf = air.select("span[class=battle-score real_combat hide]").text();
-        //   System.out.println("-" + airRbPerf + "-");
         airSbPerf = air.select("span[class=battle-score sim_combat hide]").text();
-        //     System.out.println(airSbPerf);
         player.setArcadeAirPerf(Float.parseFloat(airArcadePerf.substring(0, airArcadePerf.length() - 1)));
         player.setRbAirPerf(Float.parseFloat(airRbPerf.substring(0, airRbPerf.length() - 1)));
         player.setSbAirPerf(Float.parseFloat(airSbPerf.substring(0, airSbPerf.length() - 1)));

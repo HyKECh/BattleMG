@@ -12,6 +12,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.regex.Pattern;
@@ -95,6 +96,11 @@ public class SingleTask implements Runnable {
         String url = BASE_URL + battle.getBattleId();
         tStart = System.currentTimeMillis();
         driver.navigate().to(url);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         tStop = System.currentTimeMillis();
         message.append("Loaded in ");
         message.append((tStop - tStart) / 1000.0f);
@@ -249,6 +255,9 @@ public class SingleTask implements Runnable {
 
     private void init() {
         driver = new PhantomJSDriver(caps);
+        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(60, TimeUnit.SECONDS);
         driver.navigate().to(BASE_URL);
         driver.findElement(By.id("email")).sendKeys(email);
         driver.findElement(By.id("password")).sendKeys(pass);
