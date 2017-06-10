@@ -2,8 +2,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Properties;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -11,12 +9,10 @@ import java.util.concurrent.locks.ReentrantLock;
 public class BattleMG {
 
     private static final Logger log = LogManager.getLogger(BattleMG.class);
-    static ReentrantLock dbLock;
 
-    static void magic(int playersThreads, int battlesThreads, int pageCount, ReentrantLock dbLock) {
+    private static void magic(int playersThreads, int battlesThreads, int pageCount, ReentrantLock dbLock) {
 
         TaskScheduler taskScheduler = TaskScheduler.get(playersThreads, dbLock);
-        ExecutorService service = Executors.newFixedThreadPool(battlesThreads);
         ReentrantLock restart = new ReentrantLock();
         Condition restartCondition = restart.newCondition();
         AtomicInteger ai = new AtomicInteger(0);

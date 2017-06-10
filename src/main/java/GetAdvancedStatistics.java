@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
 class GetAdvancedStatistics implements Runnable {
     private static final Pattern fistDig;
     private static final Pattern allDig;
-    private static final Logger log = LogManager.getLogger(GetAdvancedStatistics.class);
     private final String login;
     private final Document document;
     private ArcadeBattleStatistics arcade;

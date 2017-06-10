@@ -1,6 +1,4 @@
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -10,9 +8,7 @@ public class GetProperties {
         try {
             InputStream input = new FileInputStream("config.properties");
             prop.load(input);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return prop;

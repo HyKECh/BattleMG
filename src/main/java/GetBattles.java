@@ -21,15 +21,15 @@ public class GetBattles implements Runnable {
     private Map<String, String> cookies = new HashMap<>();
     private int pageNumber;
     private ReentrantLock reentrantLock;
-    TaskScheduler taskScheduler;
+    private TaskScheduler taskScheduler;
     static private String identity_sid;
     static private String identity_token;
     static private String identity_id;
     static private String identity_name;
-    ReentrantLock restart;
-    Condition restartCondition;
-    boolean readyToRestart;
-    AtomicInteger ai;
+    private ReentrantLock restart;
+    private Condition restartCondition;
+    private boolean readyToRestart;
+    private AtomicInteger ai;
 
     static {
         Properties prop = GetProperties.get();
@@ -37,7 +37,7 @@ public class GetBattles implements Runnable {
         identity_token = prop.getProperty("identity_token");
         identity_id = prop.getProperty("identity_id");
         identity_name = prop.getProperty("identity_name");
-        BASE_URL = prop.getProperty("base_url")+"page/";
+        BASE_URL = prop.getProperty("base_url") + "page/";
     }
 
     GetBattles(AtomicInteger ai, int pageNumber, TaskScheduler taskScheduler, ReentrantLock reentrantLock, ReentrantLock restart, Condition restartCondition, boolean readyToRestart) {
