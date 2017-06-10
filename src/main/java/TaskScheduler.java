@@ -53,7 +53,7 @@ public class TaskScheduler implements Runnable {
             }
         }
         isReadyLock.unlock();
-        while (true || (tasksInQueue.get() > 0)) {
+        while (true ) {
             while (tasksInQueue.get() == 0) {
                 isReadyLock.lock();
                 try {

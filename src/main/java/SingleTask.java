@@ -12,21 +12,18 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.regex.Pattern;
 
 public class SingleTask implements Runnable {
-    private static String BASE_URL;
     private static final Logger log = LogManager.getLogger(SingleTask.class);
-    static int taskNumber;
-    private static ReentrantLock dbLock;
+    private static String BASE_URL;
+    private static int taskNumber;
     private static DesiredCapabilities caps;
     static private String email;
     static private String pass;
-    static DesiredCapabilities capabilities;
-    static int[] wasRun;
+    private static int[] wasRun;
 
     static {
         ArrayList<String> cliArgsCap = new ArrayList<>();
@@ -39,33 +36,24 @@ public class SingleTask implements Runnable {
         caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, cliArgsCap);
         caps.setCapability(PhantomJSDriverService.PHANTOMJS_PAGE_SETTINGS_PREFIX + "loadImages", false);
         System.setProperty("phantomjs.binary.path", "phantomjs.exe");
-
-
         email = prop.getProperty("email");
         pass = prop.getProperty("pass");
     }
 
 
-    Pattern pattern = Pattern.compile("\n");
+    private Pattern pattern = Pattern.compile("\n");
 
-    Thread thread;
-    boolean emptyTask = false;
+
+    private int currNumber;
     private WebDriver driver;
     private ReentrantLock internal = new ReentrantLock();
     private Condition internalCondition = internal.newCondition();
     private boolean isBusy;
     private Battle battle;
     private boolean isReady;
-    private boolean stop;
     private ReentrantLock reentrantLock;
-    private CyclicBarrier cyclicBarrier = new CyclicBarrier(2);
-    private CyclicBarrier externalStop;
-    private ReentrantLock lock = new ReentrantLock();
-    Condition condition = lock.newCondition();
-    int currNumber;
     private String rawTeamA;
     private String rawTeamB;
-    private List<WebElement> webElements;
     private String[] teamA;
     private String[] teamB;
     private StringBuilder message;
@@ -78,7 +66,6 @@ public class SingleTask implements Runnable {
         currNumber = l;
         Thread thread = new Thread(this, "SingleTask-" + taskNumber);
         thread.start();
-
     }
 
     static void setRun(int number) {
@@ -92,13 +79,6 @@ public class SingleTask implements Runnable {
         return isBusy;
     }
 
-    void stop() {
-        internal.lock();
-        isBusy = true;
-        stop = true;
-        internalCondition.signalAll();
-        internal.unlock();
-    }
 
     void add(Battle battle) {
         internal.lock();
@@ -110,20 +90,19 @@ public class SingleTask implements Runnable {
     }
 
 
-    void parceData() {
+    private void parceData() {
         message = new StringBuilder();
         String url = BASE_URL + battle.getBattleId();
         tStart = System.currentTimeMillis();
         driver.navigate().to(url);
         tStop = System.currentTimeMillis();
         message.append("Loaded in ");
-        String x = Float.toString((tStop - tStart) / 1000.0f);
         message.append((tStop - tStart) / 1000.0f);
         message.append("\t");
         message.append(driver.getCurrentUrl());
         message.append("\t");
         tStart = System.currentTimeMillis();
-        webElements = driver.findElements(By.className("team-players"));
+        List<WebElement> webElements = driver.findElements(By.className("team-players"));
         if (webElements.isEmpty()) {
             log.error("REPARSE PAGE");
             driver.navigate().to(url);
@@ -251,7 +230,7 @@ public class SingleTask implements Runnable {
 
     public void run() {
         init();
-        while ((!stop) || (isReady)) {
+        while (true) {
             internal.lock();
             while (!isBusy) {
                 try {
