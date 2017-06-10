@@ -194,7 +194,16 @@ public class SingleTask implements Runnable {
                     PlayersInBattle playersInBattle = new PlayersInBattle();
                     playersInBattle.setBattle(battle);
                     battle.setTeamB(teamB.length);
+                    int spacePosition = login.indexOf(" ");
+                    String squadron = "";
+                    if (spacePosition > 0) {
+                        squadron = login.substring(0, spacePosition);
+                        login = login.substring(login.indexOf(" ") + 1, login.length());
+                    }
                     Player player = Player.getPlayer(login, session, reentrantLock);
+                    if (spacePosition > 0) {
+                        player.setSqualron(squadron);
+                    }
                     playersInBattle.setPlayer(player);
                     playersInBattle.setTeam(1);
                     session.saveOrUpdate(playersInBattle);

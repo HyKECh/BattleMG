@@ -52,6 +52,10 @@ public class BattleMG {
         int playersThreads = 2;
         int battlesThreads = 2;
         int pageCount = 10;
+        if (args.length == 1) {
+            log.error("Get data for players");
+            GetAllPlayersStatistics.main(args);
+        }
         if (args.length == 3) {
             playersThreads = Integer.parseInt(args[0]);
             battlesThreads = Integer.parseInt(args[1]);

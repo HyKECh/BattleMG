@@ -23,6 +23,17 @@ public class Player implements Serializable {
     private int Id;
     @Column(name = "login", columnDefinition = "VARCHAR(28)", unique = true, nullable = false)
     private String login;
+    @Column(name = "squadron", columnDefinition = "VARCHAR(10)")
+    private String squalron;
+
+    public String getSqualron() {
+        return squalron;
+    }
+
+    public void setSqualron(String squalron) {
+        this.squalron = squalron;
+    }
+
     @Column(columnDefinition = "DATE")
     private Date registered;
     @Column(name = "arcade_air_perf", columnDefinition = "FLOAT", nullable = false)
