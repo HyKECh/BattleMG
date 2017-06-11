@@ -4,12 +4,20 @@ import org.hibernate.ScrollMode;
 import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
 
+import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class GetAllPlayersStatistics {
     private static final Logger log = LogManager.getLogger(GetAllPlayersStatistics.class);
+    private static int parse_players_delay;
+
+    static {
+        Properties properties = GetProperties.get();
+        parse_players_delay = Integer.parseInt(properties.getProperty("parse_players_delay"));
+
+    }
 
     public static void main(String[] args) {
 
@@ -32,7 +40,7 @@ public class GetAllPlayersStatistics {
             } else {
                 service.submit(new SetTask(player));
                 try {
-                    Thread.sleep(250);
+                    Thread.sleep(parse_players_delay);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
