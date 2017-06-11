@@ -8,5 +8,5 @@ proxy_ip = 127.0.0.1
 proxy_port = 8800
 base_url = http://base.url
 player_stat_url = http://player_st.at
-parse_battles_dalay = 500
+parse_battles_delay = 500
 parse_players_delay = 250
