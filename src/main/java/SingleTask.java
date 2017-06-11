@@ -25,7 +25,7 @@ public class SingleTask implements Runnable {
     static private String email;
     static private String pass;
     private static int[] wasRun;
-    private static int parse_battles_dalay;
+    private static int parse_battles_delay;
 
     static {
         ArrayList<String> cliArgsCap = new ArrayList<>();
@@ -40,7 +40,7 @@ public class SingleTask implements Runnable {
         System.setProperty("phantomjs.binary.path", "phantomjs.exe");
         email = prop.getProperty("email");
         pass = prop.getProperty("pass");
-        parse_battles_dalay = Integer.parseInt(prop.getProperty("parse_battles_dalay"));
+        parse_battles_delay = Integer.parseInt(prop.getProperty("parse_battles_delay"));
     }
 
 
@@ -99,7 +99,7 @@ public class SingleTask implements Runnable {
         tStart = System.currentTimeMillis();
         driver.navigate().to(url);
         try {
-            Thread.sleep(parse_battles_dalay);
+            Thread.sleep(parse_battles_delay);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -223,10 +223,10 @@ public class SingleTask implements Runnable {
         wasRun[currNumber]++;
         if (wasRun[currNumber] >= 150) {
             wasRun[currNumber] = 0;
-            log.error("                  ================================ browser restarted =======================");
             internal.unlock();
             driver.quit();
             init();
+            log.error("                  ================================ browser restarted =======================");
             internal.lock();
         }
 
