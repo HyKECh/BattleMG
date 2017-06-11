@@ -11,11 +11,11 @@ public class PlayersInBattle implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "INT UNSIGNED")
     private long id;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "player_id", referencedColumnName = "id", nullable = false)
     private Player player;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "battle_id", referencedColumnName = "id", nullable = false)
     private Battle battle;
 

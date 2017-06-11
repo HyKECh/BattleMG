@@ -135,6 +135,7 @@ public class SingleTask implements Runnable {
         try {
             parceData();
             if ((rawTeamA.isEmpty()) || (rawTeamB.isEmpty())) {
+                parceData();
                 log.error("REPARSE " + battle.getBattleId());
             }
         } catch (Exception e) {
