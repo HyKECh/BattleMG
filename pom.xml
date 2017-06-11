@@ -78,8 +78,12 @@
                                     <destinationFile>${project.build.directory}/phantomjs.exe</destinationFile>
                                 </fileSet>
                                 <fileSet>
-                                    <sourceFile>run.me.bat</sourceFile>
-                                    <destinationFile>${project.build.directory}/run.me.bat</destinationFile>
+                                    <sourceFile>get_battles.bat</sourceFile>
+                                    <destinationFile>${project.build.directory}/get_battles.bat</destinationFile>
+                                </fileSet>
+                                <fileSet>
+                                    <sourceFile>get_players_stat.bat</sourceFile>
+                                    <destinationFile>${project.build.directory}/get_players_stat.bat</destinationFile>
                                 </fileSet>
                             </fileSets>
                         </configuration>
