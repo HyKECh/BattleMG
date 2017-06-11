@@ -6,11 +6,11 @@
     <session-factory>
         <property name="connection.url">jdbc:mariadb://localhost:3306/BattlesMG?autoReconnect=true&amp;useSSL=false&amp;createDatabaseIfNotExist=true</property>
         <property name="connection.driver_class">org.mariadb.jdbc.Driver</property>
-        <property name="dialect">org.hibernate.dialect.MySQL57Dialect</property>
+        <property name="dialect">org.hibernate.dialect.MySQL57InnoDBDialect</property>
 
         <property name="hbm2ddl.auto">update</property>
 
-        <property name="hibernate.c3p0.min_size">10</property>
+        <property name="hibernate.c3p0.min_size">100</property>
         <property name="hibernate.c3p0.max_size">250</property>
         <property name="hibernate.c3p0.timeout">5</property>
         <property name="hibernate.c3p0.max_statements">4096</property>

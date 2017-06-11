@@ -55,7 +55,7 @@ class GetStatistics implements Runnable {
         try {
             player.setLevel(Integer.parseInt(level));
         } catch (Exception e) {
-            log.error("Level parse exception");
+            log.error("Level parse exception for login " + login);
         }
         String dateString = document.select("div[class=fleft small blue]").text();
         dateString = dateString.substring(dateString.indexOf(':') + 1);
@@ -64,7 +64,7 @@ class GetStatistics implements Runnable {
         try {
             date = format.parse(dateString);
         } catch (ParseException e) {
-            log.error("Date parse exception");
+            log.error("Date parse exception for login " + login);
         }
 
         Calendar cal = Calendar.getInstance();

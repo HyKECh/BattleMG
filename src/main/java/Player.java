@@ -4,7 +4,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.*;
-import java.io.ObjectInput;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
@@ -23,7 +22,7 @@ public class Player implements Serializable {
     private int Id;
     @Column(name = "login", columnDefinition = "VARCHAR(28)", unique = true, nullable = false)
     private String login;
-    @Column(name = "squadron", columnDefinition = "VARCHAR(10)")
+    @Column(name = "squadron", columnDefinition = "VARCHAR(16) CHARACTER SET utf16 COLLATE utf16_general_ci")
     private String squalron;
     @Column(columnDefinition = "DATE")
     private Date registered;

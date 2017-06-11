@@ -255,9 +255,9 @@ public class SingleTask implements Runnable {
 
     private void init() {
         driver = new PhantomJSDriver(caps);
-        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-        driver.manage().timeouts().setScriptTimeout(60, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(15, TimeUnit.SECONDS);
         driver.navigate().to(BASE_URL);
         driver.findElement(By.id("email")).sendKeys(email);
         driver.findElement(By.id("password")).sendKeys(pass);
