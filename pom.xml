@@ -54,22 +54,40 @@
                     </execution>
                 </executions>
             </plugin>
+
+
+            <plugin>
+                <groupId>com.coderplus.maven.plugins</groupId>
+                <artifactId>copy-rename-maven-plugin</artifactId>
+                <version>1.0.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-file</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <fileSets>
+                                <fileSet>
+                                    <sourceFile>config.properties</sourceFile>
+                                    <destinationFile>${project.build.directory}/config.properties</destinationFile>
+                                </fileSet>
+                                <fileSet>
+                                    <sourceFile>phantomjs.exe</sourceFile>
+                                    <destinationFile>${project.build.directory}/phantomjs.exe</destinationFile>
+                                </fileSet>
+                                <fileSet>
+                                    <sourceFile>run.me.bat</sourceFile>
+                                    <destinationFile>${project.build.directory}/run.me.bat</destinationFile>
+                                </fileSet>
+                            </fileSets>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
-
-
-        <resources>
-            <resource>
-                <directory>${project.basedir}</directory><!-- from -->
-                <targetPath>${project.build.directory}</targetPath><!-- to -->
-                <includes><!-- what -->
-                    <include>config.properties</include>
-                    <include>phantomjs.exe</include>
-                    <include>run.me.bat</include>
-                </includes>
-            </resource>
-        </resources>
-
-
     </build>
 
 
