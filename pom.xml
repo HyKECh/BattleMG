@@ -16,7 +16,6 @@
 
     <build>
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -56,6 +55,21 @@
                 </executions>
             </plugin>
         </plugins>
+
+
+        <resources>
+            <resource>
+                <directory>${project.basedir}</directory><!-- from -->
+                <targetPath>${project.build.directory}</targetPath><!-- to -->
+                <includes><!-- what -->
+                    <include>config.properties</include>
+                    <include>phantomjs.exe</include>
+                    <include>run.me.bat</include>
+                </includes>
+            </resource>
+        </resources>
+
+
     </build>
 
 
