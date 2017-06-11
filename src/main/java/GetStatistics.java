@@ -80,7 +80,7 @@ class GetStatistics implements Runnable {
         ussr = document.select("span[class=user-info-sprite user-info-sprite-ussr_flag]").parents().parents().first();
         uk = document.select("span[class=user-info-sprite user-info-sprite-uk_flag]").parents().parents().first();
         ge = document.select("span[class=user-info-sprite user-info-sprite-ge_flag]").parents().parents().first();
-        jp = document.select("span[class=user-info-sprite user-info-sprite-ge_flag]").parents().parents().first();
+        jp = document.select("span[class=user-info-sprite user-info-sprite-jp_flag]").parents().parents().first();
 
 
         System.out.println(player.getLogin());
