@@ -32,7 +32,7 @@ public class GetAllPlayersStatistics {
             } else {
                 service.submit(new SetTask(player));
                 try {
-                    Thread.sleep(50);
+                    Thread.sleep(250);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
