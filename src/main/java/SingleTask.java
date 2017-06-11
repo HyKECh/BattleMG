@@ -221,7 +221,7 @@ public class SingleTask implements Runnable {
 
 
         wasRun[currNumber]++;
-        if (wasRun[currNumber] >= 100) {
+        if (wasRun[currNumber] >= 150) {
             wasRun[currNumber] = 0;
             log.error("                  ================================ browser restarted =======================");
             internal.unlock();
