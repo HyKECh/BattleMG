@@ -55,7 +55,6 @@ class GetStatistics implements Runnable {
         try {
             player.setLevel(Integer.parseInt(level));
         } catch (Exception e) {
-            log.error(player.getLogin() + " level " + level);
             log.error("Level parse exception");
         }
         String dateString = document.select("div[class=fleft small blue]").text();
@@ -65,7 +64,6 @@ class GetStatistics implements Runnable {
         try {
             date = format.parse(dateString);
         } catch (ParseException e) {
-            log.error(player.getLogin() + " date " + dateString);
             log.error("Date parse exception");
         }
 

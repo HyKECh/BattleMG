@@ -26,17 +26,27 @@ public class GetAllPlayersStatistics {
         for (int i = 0; i < threadCount; i++) {
             scResults.next();
             Player player = (Player) scResults.get(0);
-            service.submit(new SetTask(player));
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            String playerLogin = player.getLogin();
+            if (playerLogin.contains("/")) {
+                log.error(playerLogin + " is bot");
+            } else {
+                service.submit(new SetTask(player));
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
         while (scResults.next()) {
             Player player = (Player) scResults.get(0);
-            service.submit(new SetTask(player));
+            String playerLogin = player.getLogin();
+            if (playerLogin.contains("/")) {
+                log.error(playerLogin + " is bot");
+            } else {
+                service.submit(new SetTask(player));
+            }
         }
 
         service.shutdown();
