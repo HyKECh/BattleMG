@@ -1,2 +1,2 @@
 taskkill /IM phantomjs.exe
-java -jar BattleMG-1.2-SNAPSHOT.jar 2 2 70
+java -jar BattleMG-1.2-SNAPSHOT.jar 2 2 10

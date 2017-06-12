@@ -6,8 +6,12 @@ import org.jsoup.nodes.Element;
 
 import javax.persistence.Query;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -109,9 +113,10 @@ public class ReplayParser implements Runnable {
             battle.setMap(raw.substring(index + 2, raw.length()));
             String dateString = element.select("span[class=date__text]").text();
             SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM yyyy HH:mm", Locale.ENGLISH);
+            java.sql.Timestamp sql = null;
             try {
                 Date parsed = formatter.parse(dateString);
-                java.sql.Timestamp sql = new java.sql.Timestamp(parsed.getTime());
+                sql = new java.sql.Timestamp(parsed.getTime());
                 battle.setStart(sql);
             } catch (ParseException e) {
                 log.error("Parse error " + e);
@@ -183,6 +188,15 @@ public class ReplayParser implements Runnable {
                 log.error("SET DURATION  = NULL");
                 e.printStackTrace();
             }
+            Instant stop = null;
+            try {
+                Instant startInstant = sql.toInstant().atZone(ZoneId.systemDefault()).toInstant();
+                stop = startInstant.plus(battle.getDuration().getTime(), ChronoUnit.MILLIS);
+                battle.setStop(Timestamp.from(stop.atZone(ZoneId.systemDefault()).toInstant()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             taskScheduler.addTask(battle);
         }
     }
