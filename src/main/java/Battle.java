@@ -33,9 +33,9 @@ public class Battle implements Serializable {
     private String mission = "";
     @Column(nullable = false, columnDefinition = "VARCHAR(100)")
     private String map = "";
-    @Column(columnDefinition = "TIMESTAMP")
+    @Column(columnDefinition = "TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00'")
     private Timestamp start;
-    @Column(columnDefinition = "TIMESTAMP")
+    @Column(columnDefinition = "TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00'")
     private Timestamp stop;
     @Column(columnDefinition = "VARCHAR(10)", nullable = false)
     @Enumerated(EnumType.STRING)

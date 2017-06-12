@@ -6,12 +6,8 @@ import org.jsoup.nodes.Element;
 
 import javax.persistence.Query;
 import java.sql.Time;
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -186,14 +182,6 @@ public class ReplayParser implements Runnable {
                         .text()));
             } catch (Exception e) {
                 log.error("SET DURATION  = NULL");
-                e.printStackTrace();
-            }
-            Instant stop = null;
-            try {
-                Instant startInstant = sql.toInstant().atZone(ZoneId.systemDefault()).toInstant();
-                stop = startInstant.plus(battle.getDuration().getTime(), ChronoUnit.MILLIS);
-                battle.setStop(Timestamp.from(stop.atZone(ZoneId.systemDefault()).toInstant()));
-            } catch (Exception e) {
                 e.printStackTrace();
             }
 
