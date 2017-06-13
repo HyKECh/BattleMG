@@ -6,11 +6,15 @@ import org.jsoup.nodes.Element;
 
 import javax.persistence.Query;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ReplayParser implements Runnable {
@@ -21,12 +25,18 @@ public class ReplayParser implements Runnable {
     private ReentrantLock reentrantLock;
     private TaskScheduler taskScheduler;
     private int pageNumber;
+    private static long time_offset;
 
     ReplayParser(int pageNumber, Element element, TaskScheduler taskScheduler, ReentrantLock reentrantLock) {
         this.pageNumber = pageNumber;
         this.element = element;
         this.taskScheduler = taskScheduler;
         this.reentrantLock = reentrantLock;
+    }
+
+    static {
+        Properties properties = GetProperties.get();
+        time_offset = Integer.parseInt(properties.getProperty("time_offset")) * 60 * 60 * 1000;
     }
 
     @Override
@@ -184,6 +194,16 @@ public class ReplayParser implements Runnable {
                 log.error("SET DURATION  = NULL");
                 e.printStackTrace();
             }
+
+
+            try {
+                long startValue = battle.getStart().getTime() + time_offset;
+                long durationValue = battle.getDuration().getTime();
+                battle.setStop(Timestamp.from(Instant.ofEpochMilli(startValue + durationValue).atZone(ZoneId.systemDefault()).toInstant()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
 
             taskScheduler.addTask(battle);
         }

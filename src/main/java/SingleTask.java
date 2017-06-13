@@ -9,7 +9,10 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -26,6 +29,8 @@ public class SingleTask implements Runnable {
     static private String pass;
     private static int[] wasRun;
     private static int parse_battles_delay;
+    private static DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+
 
     static {
         ArrayList<String> cliArgsCap = new ArrayList<>();
@@ -104,10 +109,13 @@ public class SingleTask implements Runnable {
             e.printStackTrace();
         }
         tStop = System.currentTimeMillis();
+        Date date = new Date();
+        message.append(dateFormat.format(date));
+        message.append("\t");
         message.append("Loaded in ");
         message.append((tStop - tStart) / 1000.0f);
         message.append("\t");
-        message.append(driver.getCurrentUrl());
+        message.append("battleID = " + battle.getBattleId());
         message.append("\t");
         tStart = System.currentTimeMillis();
         List<WebElement> webElements = driver.findElements(By.className("team-players"));

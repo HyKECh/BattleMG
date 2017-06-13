@@ -10,3 +10,4 @@ base_url = http://base.url
 player_stat_url = http://player_st.at
 parse_battles_delay = 500
 parse_players_delay = 250
+time_offset = 3
