@@ -123,7 +123,7 @@ MODIFIES SQL DATA
   BEGIN
 
     DELETE FROM battles
-    WHERE players = 0;
+    WHERE (team_a + team_b) = 0;
     CALL times();
     CALL battles_in_times();
     CALL arcade_air();
