@@ -1,4 +1,3 @@
-CREATE DATABASE IF NOT EXISTS `battlesmg3`
 USE `battlesmg`
 
 DELIMITER //
