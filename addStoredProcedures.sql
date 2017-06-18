@@ -172,7 +172,7 @@ MODIFIES SQL DATA
       `arcade_tap`     SMALLINT(11) UNSIGNED  NOT NULL DEFAULT '0',
       `realistic_tap`  SMALLINT(11) UNSIGNED  NOT NULL DEFAULT '0',
       `total`          MEDIUMINT(11) UNSIGNED NOT NULL DEFAULT '0',
-      `players`        MEDIUMINT(11) UNSIGNED NOT NULL DEFAULT '0',
+      `players`        MEDIUMINT(11) UNSIGNED DEFAULT '0',
       PRIMARY KEY (`id`),
       INDEX `time` (`time`) USING HASH
     )
