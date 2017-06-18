@@ -36,7 +36,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `battles_in_times`()
     MODIFIES SQL DATA
 BEGIN
 
-DROP TABLE `battles_in_times`;
+DROP TABLE IF EXISTS `battles_in_times`;
 
 CREATE TABLE `battles_in_times` (
 	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -107,7 +107,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `times`()
     MODIFIES SQL DATA
 BEGIN
 
-DROP TABLE `times`;
+DROP TABLE IF EXISTS `times`;
 
 CREATE TABLE IF NOT EXISTS `times` (
 	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
