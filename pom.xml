@@ -85,6 +85,14 @@
                                     <sourceFile>get_players_stat.bat</sourceFile>
                                     <destinationFile>${project.build.directory}/get_players_stat.bat</destinationFile>
                                 </fileSet>
+                                <fileSet>
+                                    <sourceFile>dropStoredProcedures.sql</sourceFile>
+                                    <destinationFile>${project.build.directory}/dropStoredProcedures.sql</destinationFile>
+                                </fileSet>
+                                <fileSet>
+                                    <sourceFile>addStoredProcedures.sql</sourceFile>
+                                    <destinationFile>${project.build.directory}/addStoredProcedures.sql</destinationFile>
+                                </fileSet>
                             </fileSets>
                         </configuration>
                     </execution>
