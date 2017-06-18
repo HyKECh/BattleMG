@@ -1,4 +1,5 @@
-USE `battlesmg`
+USE `battlesmg`;
+
 
 DELIMITER //
 CREATE DEFINER=`root`@`%` PROCEDURE `arcade_air`()
