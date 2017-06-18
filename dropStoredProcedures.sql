@@ -10,3 +10,4 @@ DROP PROCEDURE arcade_tap;
 DROP PROCEDURE realistic_tap;
 DROP PROCEDURE run_me;
 DROP PROCEDURE total;
+DROP PROCEDURE total_players;

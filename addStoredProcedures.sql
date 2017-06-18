@@ -117,6 +117,23 @@ CREATE DEFINER =`root`@`%` PROCEDURE `realistic_tap`()
   END//
 DELIMITER ;
 
+
+DELIMITER //
+CREATE DEFINER =`root`@`%` PROCEDURE `total_players`()
+MODIFIES SQL DATA
+  BEGIN
+
+
+    UPDATE times
+    SET players = (SELECT SUM(battles.players)
+                   FROM battles_in_times
+                     JOIN battles ON battles_in_times.battle_id = battles.id
+                   WHERE battles_in_times.time_id = times.id);
+
+
+  END//
+DELIMITER ;
+
 DELIMITER //
 CREATE DEFINER =`root`@`%` PROCEDURE `run_me`()
 MODIFIES SQL DATA
@@ -133,6 +150,7 @@ MODIFIES SQL DATA
     CALL arcade_tap();
     CALL realistic_tap();
     CALL total();
+    CALL total_players();
 
   END//
 DELIMITER ;
