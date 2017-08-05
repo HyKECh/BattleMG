@@ -273,5 +273,6 @@ public class SingleTask implements Runnable {
         driver.findElement(By.id("email")).sendKeys(email);
         driver.findElement(By.id("password")).sendKeys(pass);
         driver.findElement(By.xpath("//input[@value='Authorization']")).submit();
+        driver.navigate().to(BASE_URL);
     }
 }
