@@ -6,7 +6,7 @@ import org.jsoup.nodes.Document;
 import java.util.Properties;
 
 class SetTask implements Runnable {
-    private static final Logger log = LogManager.getLogger(SetTask.class);
+    private static final Logger log = LogManager.getLogger("playersLog");
     private static String BASE_URL;
     private Document document;
     private Player player;

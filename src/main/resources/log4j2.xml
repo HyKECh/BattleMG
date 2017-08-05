@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
-
     <Appenders>
-
         <File name="file" fileName="log.log">
             <!--  <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>-->
             <PatternLayout pattern="%msg%n"/>
+        </File>
+        <File name="players" fileName="players.log">
+            <PatternLayout>
+                <!--  <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>-->
+                <PatternLayout pattern="%msg%n"/>
+            </PatternLayout>
         </File>
         <Console name="console" target="SYSTEM_OUT">
             <!-- <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>-->
@@ -17,5 +21,8 @@
             <AppenderRef ref="file" level="WARN"/>
             <AppenderRef ref="console" level="WARN"/>
         </Root>
+        <Logger name="playersLog" level="WARN">
+            <AppenderRef ref="players" level="WARN"/>
+        </Logger>
     </Loggers>
 </Configuration>

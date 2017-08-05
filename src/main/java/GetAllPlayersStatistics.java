@@ -10,7 +10,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class GetAllPlayersStatistics {
-    private static final Logger log = LogManager.getLogger(GetAllPlayersStatistics.class);
+    private static final Logger log = LogManager.getLogger("playersLog");
     private static int parse_players_delay;
 
     static {

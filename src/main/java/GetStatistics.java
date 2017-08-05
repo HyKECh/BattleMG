@@ -13,10 +13,11 @@ import java.util.Date;
 
 
 class GetStatistics implements Runnable {
-    private final static Logger log = LogManager.getLogger(GetStatistics.class);
+    private final static Logger log = LogManager.getLogger("playersLog");
     private final String login;
     private Player player;
     private Document document;
+    private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SSS");
 
     GetStatistics(Player player, Document document) {
         this.document = document;
@@ -37,6 +38,9 @@ class GetStatistics implements Runnable {
 
     void pase() {
 
+        Date dt = Calendar.getInstance().getTime();
+        String dtString = sdf.format(dt);
+
         Element us;
         Element ussr;
         Element uk;
@@ -55,7 +59,7 @@ class GetStatistics implements Runnable {
         try {
             player.setLevel(Integer.parseInt(level));
         } catch (Exception e) {
-            log.error("Level parse exception for login " + login);
+            log.error(dtString + " Level parse exception for login " + login);
         }
         String dateString = document.select("div[class=fleft small blue]").text();
         dateString = dateString.substring(dateString.indexOf(':') + 1);
@@ -64,7 +68,7 @@ class GetStatistics implements Runnable {
         try {
             date = format.parse(dateString);
         } catch (ParseException e) {
-            log.error("Date parse exception for login " + login);
+            log.error(dtString + " Date parse exception for login " + login);
         }
 
         Calendar cal = Calendar.getInstance();
@@ -83,7 +87,7 @@ class GetStatistics implements Runnable {
         jp = document.select("span[class=user-info-sprite user-info-sprite-jp_flag]").parents().parents().first();
 
 
-        System.out.println(player.getLogin());
+        log.error(dtString + " " + player.getLogin());
         air = document.select("span[class=js-air_force]").first();
         airArcadePerf = air.select("span[class=battle-score arc_combat]").text();
         airRbPerf = air.select("span[class=battle-score real_combat hide]").text();
