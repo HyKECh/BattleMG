@@ -66,10 +66,24 @@ public class Player implements Serializable {
     private int geMedals;
     @Column(name = "jp_vehicles", columnDefinition = "TINYINT UNSIGNED", nullable = false)
     private int jpVehicles;
-    @Column(name = "jp__elite_vehicles", columnDefinition = "TINYINT UNSIGNED", nullable = false)
+    @Column(name = "jp_elite_vehicles", columnDefinition = "TINYINT UNSIGNED", nullable = false)
     private int jpEliteVehicles;
     @Column(name = "jp_medals", columnDefinition = "TINYINT UNSIGNED", nullable = false)
     private int jpMedals;
+//Италия
+    @Column(name = "it_vehicles", columnDefinition = "TINYINT UNSIGNED", nullable = false)
+    private int itVehicles;
+    @Column(name = "it_elite_vehicles", columnDefinition = "TINYINT UNSIGNED", nullable = false)
+    private int itEliteVehicles;
+    @Column(name = "it_medals", columnDefinition = "TINYINT UNSIGNED", nullable = false)
+    private int itMedals;
+//Франция
+    @Column(name = "fr_vehicles", columnDefinition = "TINYINT UNSIGNED", nullable = false)
+    private int frVehicles;
+    @Column(name = "fr_elite_vehicles", columnDefinition = "TINYINT UNSIGNED", nullable = false)
+    private int frEliteVehicles;
+    @Column(name = "fr_medals", columnDefinition = "TINYINT UNSIGNED", nullable = false)
+    private int frMedals;
 
     static Player getPlayer(String login, Session session1, ReentrantLock reentrantLock) {
         Player player;
@@ -295,6 +309,58 @@ public class Player implements Serializable {
 
     public void setJpMedals(int jpMedals) {
         this.jpMedals = jpMedals;
+    }
+
+    //Италия
+
+    public int getItVehicles() {
+        return itVehicles;
+    }
+
+    public void setItVehicles(int itVehicles) {
+        this.itVehicles = itVehicles;
+    }
+
+    public int getItEliteVehicles() {
+        return itEliteVehicles;
+    }
+
+    public void setItEliteVehicles(int itEliteVehicles) {
+        this.itEliteVehicles = itEliteVehicles;
+    }
+
+    public int getItMedals() {
+        return itMedals;
+    }
+
+    public void setItMedals(int itMedals) {
+        this.itMedals = itMedals;
+    }
+
+    //Франция
+
+    public int getFrVehicles() {
+        return frVehicles;
+    }
+
+    public void setFrVehicles(int frVehicles) {
+        this.frVehicles = frVehicles;
+    }
+
+    public int getFrEliteVehicles() {
+        return frEliteVehicles;
+    }
+
+    public void setFrEliteVehicles(int frEliteVehicles) {
+        this.frEliteVehicles = frEliteVehicles;
+    }
+
+    public int getFrMedals() {
+        return frMedals;
+    }
+
+    public void setFrMedals(int frMedals) {
+        this.frMedals = frMedals;
     }
 
     @Override

@@ -46,6 +46,8 @@ class GetStatistics implements Runnable {
         Element uk;
         Element ge;
         Element jp;
+        Element it;
+        Element fr;
         Element air;
         Element ground;
         String airArcadePerf;
@@ -85,6 +87,8 @@ class GetStatistics implements Runnable {
         uk = document.select("span[class=user-info-sprite user-info-sprite-uk_flag]").parents().parents().first();
         ge = document.select("span[class=user-info-sprite user-info-sprite-ge_flag]").parents().parents().first();
         jp = document.select("span[class=user-info-sprite user-info-sprite-jp_flag]").parents().parents().first();
+        it = document.select("span[class=user-info-sprite user-info-sprite-it_flag]").parents().parents().first();
+        fr = document.select("span[class=user-info-sprite user-info-sprite-fr_flag]").parents().parents().first();
 
 
         log.error(dtString + " " + player.getLogin());
@@ -132,6 +136,14 @@ class GetStatistics implements Runnable {
         player.setJpVehicles(Integer.parseInt(jp.select("td:eq(" + "2" + ")").text()));
         player.setJpEliteVehicles(Integer.parseInt(jp.select("td:eq(" + "3" + ")").text()));
         player.setJpMedals(Integer.parseInt(jp.select("td:eq(" + "4" + ")").text()));
+
+        player.setItVehicles(Integer.parseInt(it.select("td:eq(" + "2" + ")").text()));
+        player.setItEliteVehicles(Integer.parseInt(it.select("td:eq(" + "3" + ")").text()));
+        player.setItMedals(Integer.parseInt(it.select("td:eq(" + "4" + ")").text()));
+
+        player.setFrVehicles(Integer.parseInt(fr.select("td:eq(" + "2" + ")").text()));
+        player.setFrEliteVehicles(Integer.parseInt(fr.select("td:eq(" + "3" + ")").text()));
+        player.setFrMedals(Integer.parseInt(fr.select("td:eq(" + "4" + ")").text()));
     }
 
     @Override
